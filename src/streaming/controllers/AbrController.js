@@ -709,6 +709,7 @@ function AbrController() {
      * @private
      */
     function _changeQuality(type, oldQuality, newQuality, maxIdx, reason, streamId) {
+        console.log("!!!! AbrController.changeQuality():" + JSON.stringify({ type: type, oldQuality: oldQuality, newQuality: newQuality, maxIdx: maxIdx, reason: reason, streamId: streamId}));
         if (type && streamProcessorDict[streamId] && streamProcessorDict[streamId][type]) {
             const streamInfo = streamProcessorDict[streamId][type].getStreamInfo();
             const bufferLevel = dashMetrics.getCurrentBufferLevel(type);

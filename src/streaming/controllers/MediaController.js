@@ -173,6 +173,7 @@ function MediaController() {
         tracks[id][type].current = track;
 
         if (tracks[id][type].current && (type !== Constants.TEXT || (type === Constants.TEXT && track.isFragmented))) {
+            console.log("!!!! settings.get().streaming.trackSwitchMode[" + type + "] = " + settings.get().streaming.trackSwitchMode[type]);
             eventBus.trigger(Events.CURRENT_TRACK_CHANGED, {
                 oldMediaInfo: current,
                 newMediaInfo: track,

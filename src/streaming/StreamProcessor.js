@@ -1103,10 +1103,13 @@ function StreamProcessor(config) {
     }
 
     function _bufferClearedForNonReplacement() {
+        // EXPERIMENTAL: See https://github.com/Dash-Industry-Forum/dash.js/pull/3797
+        /*
         const time = playbackController.getTime();
         const targetTime = bufferController.getContinuousBufferTimeForTargetTime(time);
 
         setExplicitBufferingTime(targetTime);
+        */
         scheduleController.startScheduleTimer();
     }
 
