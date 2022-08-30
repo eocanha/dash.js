@@ -1112,5 +1112,29 @@
         </div>
     </div>
 </div>
+
+<script>
+setTimeout(function() {
+ var loadButton = document.querySelector("body > div.container > div:nth-child(2) > div > span > button.btn.btn-primary");
+ var video = document.querySelector("#videoContainer > video");
+
+ console.log("!!! Load button click");
+ loadButton.click();
+
+ var intervalId = setInterval(function() {
+   var currentTime = video.currentTime;
+   if (true && currentTime >= 10) {
+     clearInterval(intervalId);
+     intervalId = null;
+     var seekTargetTime = 2;
+     console.log("!!! Video currentTime: " + currentTime + " --> " + seekTargetTime);
+     video.currentTime = seekTargetTime;
+   } else {
+     console.log("!!! Video currentTime: " + currentTime);
+   }
+ }, 100);
+}, 5000);
+</script>
+
 </body>
 </html>
