@@ -137,7 +137,8 @@ function Debug(config) {
     }
 
     function debug(...params) {
-        doLog(LOG_LEVEL_DEBUG, this, ...params);
+        // Debug is now info!!!
+        doLog(LOG_LEVEL_INFO, this, ...params);
     }
 
     function doLog(level, _this, ...params) {
