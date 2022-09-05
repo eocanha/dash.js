@@ -279,6 +279,7 @@ function BufferController(config) {
                     criticalBufferLevel: criticalBufferLevel,
                     quotaExceededTime: e.chunk.start
                 });
+                console.log("!!!! BufferController._onAppended(): clearBuffers");
                 clearBuffers(getClearRanges());
             }
             return;
@@ -505,9 +506,15 @@ function BufferController(config) {
             if (aheadPruningRange) {
                 clearRanges.push(aheadPruningRange);
             }
+
+            console.log("!!!! BufferController.getAllRangesWithSafetyFactor(" + seekTime + "): behindPruningRange: " + JSON.stringify(behindPruningRange) + ", aheadPruningRange: " + JSON.stringify(aheadPruningRange));
         }
 
         return clearRanges;
+
+        // !!! DEBUG
+        //console.log("!!!! EXPERIMENT: BufferController.getAllRangesWithSafetyFactor(" + seekTime + "): Returning empty clearRanges to avoid pruning");
+        //return [];
     }
 
     function _getRangeBehindForPruning(targetTime, ranges) {
@@ -756,6 +763,8 @@ function BufferController(config) {
     }
 
     function clearBuffers(ranges) {
+        console.log("!!!! BufferController.clearBuffers():" + JSON.stringify(ranges));
+        console.trace();
         return new Promise((resolve, reject) => {
             if (!ranges || !sourceBufferSink || ranges.length === 0) {
                 resolve();

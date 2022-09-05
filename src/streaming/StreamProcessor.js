@@ -283,6 +283,7 @@ function StreamProcessor(config) {
                     // Clear the buffer. We need to prune everything which is not in the target interval.
                     const clearRanges = bufferController.getAllRangesWithSafetyFactor(e.seekTime);
                     // When everything has been pruned go on
+                    console.log("!!!! StreamProcessor.prepareForPlaybackSeek(): clearBuffers");
                     return bufferController.clearBuffers(clearRanges);
                 })
                 .then(() => {
