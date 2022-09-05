@@ -5,7 +5,9 @@
     "streaming": {
         "buffer": {
             "fastSwitchEnabled": false,
-            "flushBufferAtTrackSwitch": true
+            "flushBufferAtTrackSwitch": true,
+            "bufferTimeAtTopQuality": 30,
+            "bufferTimeAtTopQualityLongForm": 30
         }
     }
 }
