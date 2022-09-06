@@ -560,6 +560,20 @@ function BufferController(config) {
             if (currentTimeRequest) {
                 rangeStart = Math.max(currentTimeRequest.startTime + currentTimeRequest.duration, rangeStart);
             }
+
+            for (var i = 0; i < ranges.length; i++) {
+                if (ranges.start(i) <= targetTime && targetTime <= ranges.end(i)
+                    && ranges.start(i) <= rangeStart && rangeStart <= ranges.end(i)) {
+                    let oldRangeStart = rangeStart;
+                    if (i + 1 < ranges.length) {
+                        rangeStart = ranges.start(i+1);
+                    } else
+                        rangeStart = ranges.end(i) + 1;
+                    logger.debug("Buffered range [" + ranges.start(i) + ", " + ranges.end(i) + "] overlaps with targetTime " + targetTime + " and range to be pruned [" + oldRangeStart + ", " + endOfBuffer + "], using [" + rangeStart + ", " + endOfBuffer +"] instead");
+                    break;
+                }
+            }
+
             if (rangeStart < endOfBuffer) {
                 return {
                     start: rangeStart,
